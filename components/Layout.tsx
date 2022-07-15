@@ -2,8 +2,9 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 
 import { IHouses, House } from '../types';
+import List from './list/List';
 
-function Layout() {
+const Layout = () => {
   const [houses, setHouses] = useState<House[] | []>([]);
   const [loaded, setLoaded] = useState<boolean>(false);
 
@@ -28,7 +29,12 @@ function Layout() {
     fetchAllHouses(basePage, baseDisplayNumber);
   }, []);
 
-  return <>Layout</>;
-}
+  return (
+    <>
+      {!loaded && 'Laddar'}
+      {loaded && <List data={houses} />}
+    </>
+  );
+};
 
 export default Layout;
