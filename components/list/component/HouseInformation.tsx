@@ -4,7 +4,12 @@ import { House } from '../../../types';
 
 const HouseInformation = (props: { house: House }) => {
   const house = props.house;
-  return <div>HouseInformation</div>;
+  return (
+    <>
+      <p>{house.name}</p>
+      <p>{house.region}</p>
+    </>
+  );
 };
 
 export default HouseInformation;

@@ -9,7 +9,7 @@ const ListItem = (props: { house: House }) => {
   const [open, setOpen] = useState<boolean>(false);
   return (
     <div>
-      <p>{house.name}</p>
+      <h2>{house.name}</h2>
       <button onClick={() => setOpen(!open)}>
         {open ? 'Stäng mig' : 'Läs mer'}
       </button>
