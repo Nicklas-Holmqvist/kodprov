@@ -10,15 +10,13 @@ interface IError {
 interface IExportData {
   houses: IHouses[];
   status: boolean;
-  links: any;
 }
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<IExportData | IError>
 ) {
-  const page = req.body.page;
-  const displayCount = req.body.displayCount;
+  const searchValue = req.body.searchValue.toLowerCase();
 
   const errorMsg: IError = {
     msg: 'No thrones to be found',
@@ -27,13 +25,12 @@ export default async function handler(
 
   try {
     const response = await fetch(
-      `https://www.anapioficeandfire.com/api/houses?page=${page}&pageSize=${displayCount}`
+      `https://www.anapioficeandfire.com/api/houses?name=house%20${searchValue}`
     );
     const data = await response.json();
     const exportData: IExportData = {
       houses: data,
-      status: true,
-      links: response.headers.get('Link'),
+      status: response.ok,
     };
     res.status(200).json(exportData);
   } catch (error) {
