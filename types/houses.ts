@@ -1,6 +1,7 @@
 export interface IHouses {
   houses: House[];
   status: boolean;
+  links: any;
 }
 
 export interface House {
