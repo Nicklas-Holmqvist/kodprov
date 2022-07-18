@@ -8,6 +8,7 @@ import List from './list/List';
 const Layout = () => {
   const [houses, setHouses] = useState<House[] | []>([]);
   const [loaded, setLoaded] = useState<boolean>(false);
+  const [pagination, setPagination] = useState<any>([]);
   const [searchValue, setSearchValue] = useState<string>('');
   const [noResult, setNoResult] = useState<{
     msg: string;
@@ -18,7 +19,7 @@ const Layout = () => {
   });
 
   const basePage = 1;
-  const baseDisplayNumber = 50;
+  const baseDisplayNumber = 10;
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (noResult.resultBoolean === true && searchValue.length >= 0) {
@@ -46,6 +47,7 @@ const Layout = () => {
     if (!data.status) return;
     setHouses(data.houses);
     setLoaded(data.status);
+    setPagination(data.links);
   };
 
   const fetchSearchResult = async () => {
