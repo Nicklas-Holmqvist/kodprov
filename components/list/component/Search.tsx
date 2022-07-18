@@ -8,19 +8,22 @@ const Search = (props: {
 }) => {
   return (
     <>
-      <label>
-        Sök hus:
-        <input
-          type="text"
-          value={props.value}
-          onChange={(event) => props.handleChange(event)}
-        />
-      </label>
-      <input
-        type="button"
-        value="Sök"
-        onClick={() => props.value.length > 0 && props.search()}
-      />
+      <form
+        onSubmit={(event: React.ChangeEvent<SubmitEventInit>) => {
+          event.preventDefault();
+          props.value.length > 0 && props.search();
+        }}
+      >
+        <label>
+          Sök hus:
+          <input
+            type="text"
+            value={props.value}
+            onChange={(event) => props.handleChange(event)}
+          />
+        </label>
+        <input type="submit" value="Sök" />
+      </form>
       <input type="button" value="Reset" onClick={props.reset} />
     </>
   );
