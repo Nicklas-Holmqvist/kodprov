@@ -1,16 +1,7 @@
+import parse from 'parse-link-header';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
-import { IHouses } from '../../types';
-
-interface IError {
-  msg: string;
-  status: boolean;
-}
-
-interface IExportData {
-  houses: IHouses[];
-  status: boolean;
-}
+import { IError, IExportData, IHouses, IPagination } from '../../types';
 
 export default async function handler(
   req: NextApiRequest,
@@ -28,9 +19,11 @@ export default async function handler(
       `https://www.anapioficeandfire.com/api/houses?name=house%20${searchValue}`
     );
     const data = await response.json();
+    const pagination = parse(response.headers.get('Link'));
     const exportData: IExportData = {
       houses: data,
-      status: response.ok,
+      status: true,
+      links: pagination,
     };
     res.status(200).json(exportData);
   } catch (error) {

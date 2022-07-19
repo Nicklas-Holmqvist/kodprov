@@ -1,13 +1,15 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 
-import { IHouses, House } from '../types';
-import Search from './list/component/Search';
 import List from './list/List';
+import Search from './Search';
+import Pagination from './pagination/Pagination';
+import { IHouses, House, IPagination } from '../types';
 
 const Layout = () => {
   const [houses, setHouses] = useState<House[] | []>([]);
   const [loaded, setLoaded] = useState<boolean>(false);
+  const [pagination, setPagination] = useState<IPagination>({});
   const [searchValue, setSearchValue] = useState<string>('');
   const [noResult, setNoResult] = useState<{
     msg: string;
@@ -18,7 +20,7 @@ const Layout = () => {
   });
 
   const basePage = 1;
-  const baseDisplayNumber = 50;
+  const baseDisplayNumber = 15;
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (noResult.resultBoolean === true && searchValue.length >= 0) {
@@ -46,6 +48,7 @@ const Layout = () => {
     if (!data.status) return;
     setHouses(data.houses);
     setLoaded(data.status);
+    setPagination(data.links);
   };
 
   const fetchSearchResult = async () => {
@@ -59,7 +62,9 @@ const Layout = () => {
 
     const response = await fetch('api/search', options);
     const data: IHouses = await response.json();
+
     if (!data.status) return;
+    setPagination(data.links);
     if (data.houses.length === 0)
       return setNoResult((oldState) => ({
         ...oldState,
@@ -89,6 +94,9 @@ const Layout = () => {
       />
       {!loaded && 'Laddar'}
       {loaded && <List data={houses} />}
+      {loaded && (
+        <Pagination pages={pagination} handlePagination={fetchAllHouses} />
+      )}
     </>
   );
 };
