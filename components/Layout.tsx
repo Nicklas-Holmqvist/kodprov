@@ -1,14 +1,15 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 
-import { IHouses, House } from '../types';
-import Search from './list/component/Search';
+import { IHouses, House, IPagination } from '../types';
+import Search from './Search';
 import List from './list/List';
+import Pagination from './pagination/Pagination';
 
 const Layout = () => {
   const [houses, setHouses] = useState<House[] | []>([]);
   const [loaded, setLoaded] = useState<boolean>(false);
-  const [pagination, setPagination] = useState<any>([]);
+  const [pagination, setPagination] = useState<IPagination>({});
   const [searchValue, setSearchValue] = useState<string>('');
   const [noResult, setNoResult] = useState<{
     msg: string;
@@ -91,6 +92,9 @@ const Layout = () => {
       />
       {!loaded && 'Laddar'}
       {loaded && <List data={houses} />}
+      {loaded && (
+        <Pagination pages={pagination} handlePagination={fetchAllHouses} />
+      )}
     </>
   );
 };
