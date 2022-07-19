@@ -20,7 +20,7 @@ const Layout = () => {
   });
 
   const basePage = 1;
-  const baseDisplayNumber = 10;
+  const baseDisplayNumber = 15;
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (noResult.resultBoolean === true && searchValue.length >= 0) {

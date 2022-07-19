@@ -19,7 +19,7 @@ const Pagination = (props: {
         directionData={props.pages}
         handlePagination={props.handlePagination}
       />
-      <PageDropdown pages={'page'} />
+      <PageDropdown pages={props.pages} handlePage={props.handlePagination} />
       <Arrow
         direction={'next'}
         directionData={props.pages}
