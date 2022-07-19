@@ -9,12 +9,17 @@ const Arrow = (props: {
   const displayCount = Number(props.directionData.pageSize);
   const pages = {
     first: Number(props.directionData['first'].page),
-    back: Number(props.directionData['next'].page) - 2,
-    activePage: Number(props.directionData['next'].page) - 1,
-    next: Number(props.directionData['next'].page),
+    back: props.directionData['next']
+      ? Number(props.directionData['next'].page) - 2
+      : Number(props.directionData['last'].page),
+    activePage: props.directionData['next']
+      ? Number(props.directionData['next'].page) - 1
+      : Number(props.directionData['last'].page),
+    next: props.directionData['next']
+      ? Number(props.directionData['next'].page)
+      : Number(props.directionData['last'].page),
     last: Number(props.directionData['last'].page),
   };
-  console.log(props.directionData);
 
   const handleChange = () => {
     switch (props.direction) {
@@ -26,10 +31,18 @@ const Arrow = (props: {
         if (pages.activePage >= pages.last) return;
         props.handlePagination(pages.next, displayCount);
         break;
+      case 'first':
+        if (pages.activePage <= 1) return;
+        props.handlePagination(pages.first, displayCount);
+        break;
+      case 'last':
+        if (pages.activePage >= pages.last) return;
+        props.handlePagination(pages.last, displayCount);
+        break;
     }
   };
 
-  return <div onClick={handleChange}>arrow</div>;
+  return <div onClick={handleChange}>{props.direction}</div>;
 };
 
 export default Arrow;

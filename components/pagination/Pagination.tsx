@@ -10,6 +10,11 @@ const Pagination = (props: {
   return (
     <>
       <Arrow
+        direction={'first'}
+        directionData={props.pages}
+        handlePagination={props.handlePagination}
+      />
+      <Arrow
         direction={'back'}
         directionData={props.pages}
         handlePagination={props.handlePagination}
@@ -17,6 +22,11 @@ const Pagination = (props: {
       <PageDropdown pages={'page'} />
       <Arrow
         direction={'next'}
+        directionData={props.pages}
+        handlePagination={props.handlePagination}
+      />
+      <Arrow
+        direction={'last'}
         directionData={props.pages}
         handlePagination={props.handlePagination}
       />

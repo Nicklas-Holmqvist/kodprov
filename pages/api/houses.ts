@@ -37,6 +37,7 @@ export default async function handler(
       status: true,
       links: pagination,
     };
+    console.log(pagination);
     res.status(200).json(exportData);
   } catch (error) {
     res.status(400).json(errorMsg);
