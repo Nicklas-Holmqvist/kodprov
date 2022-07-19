@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import parse from 'parse-link-header';
 
-import { IHouses } from '../../types';
+import { IHouses, IPagination } from '../../types';
 
 interface IError {
   msg: string;
@@ -11,7 +11,7 @@ interface IError {
 interface IExportData {
   houses: IHouses[];
   status: boolean;
-  links: any;
+  links: IPagination;
 }
 
 export default async function handler(

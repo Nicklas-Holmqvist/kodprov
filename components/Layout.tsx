@@ -62,7 +62,9 @@ const Layout = () => {
 
     const response = await fetch('api/search', options);
     const data: IHouses = await response.json();
+
     if (!data.status) return;
+    setPagination(data.links);
     if (data.houses.length === 0)
       return setNoResult((oldState) => ({
         ...oldState,
