@@ -1,10 +1,10 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 
-import { IHouses, House, IPagination } from '../types';
-import Search from './Search';
 import List from './list/List';
+import Search from './Search';
 import Pagination from './pagination/Pagination';
+import { IHouses, House, IPagination } from '../types';
 
 const Layout = () => {
   const [houses, setHouses] = useState<House[] | []>([]);

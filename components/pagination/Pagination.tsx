@@ -1,5 +1,6 @@
 import React from 'react';
 import { IPagination } from '../../types';
+
 import Arrow from './components/Arrow';
 import PageDropdown from './components/PageDropdown';
 

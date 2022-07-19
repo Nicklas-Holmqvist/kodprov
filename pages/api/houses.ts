@@ -1,18 +1,7 @@
-import type { NextApiRequest, NextApiResponse } from 'next';
 import parse from 'parse-link-header';
+import type { NextApiRequest, NextApiResponse } from 'next';
 
-import { IHouses, IPagination } from '../../types';
-
-interface IError {
-  msg: string;
-  status: boolean;
-}
-
-interface IExportData {
-  houses: IHouses[];
-  status: boolean;
-  links: IPagination;
-}
+import { IError, IExportData, IHouses, IPagination } from '../../types';
 
 export default async function handler(
   req: NextApiRequest,

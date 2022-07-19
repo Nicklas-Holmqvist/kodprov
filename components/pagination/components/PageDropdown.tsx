@@ -1,4 +1,5 @@
 import React, { OptionHTMLAttributes } from 'react';
+
 import { IPage, IPagination } from '../../../types';
 
 const PageDropdown = (props: {
