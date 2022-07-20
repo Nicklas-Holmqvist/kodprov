@@ -13,6 +13,7 @@ const PageSize = (props: {
 
   return (
     <>
+      <p>Antal per sida</p>
       <label>
         <select onChange={handleOnChange} value={props.pageSize}>
           {pageSizes.map((pageSize: number, index: number) => (

@@ -1,0 +1,33 @@
+.listContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.listItem {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem;
+}
+
+.searchForm {
+    padding: 0.5rem;
+}
+
+.searchInput {
+    width: 20rem;
+    margin-left:0.5rem;
+    padding: 0.4rem;
+    padding-bottom: 0.2rem;
+    border: none;
+    border-bottom: solid 1px black
+
+}
+
+.itemTitle {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+

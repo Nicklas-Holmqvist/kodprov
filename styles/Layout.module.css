@@ -1,0 +1,28 @@
+.mainSection {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.listSection {
+    width: 42rem;
+}
+
+.paginationsContainer {
+    width: 25rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 1rem 0.5rem 2rem 0.5rem;
+    padding-left: 0.5rem;
+}
+
+@media only screen and (max-width: 600px) {
+    .listSection {
+        width: 100%;
+    }
+
+    .paginationsContainer {
+        width: 100%;
+    }
+  }

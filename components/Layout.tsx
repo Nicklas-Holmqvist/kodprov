@@ -1,11 +1,12 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 
+import styles from '../styles/Layout.module.css';
 import List from './list/List';
 import Search from './Search';
+import PageSize from './PageSize';
 import Pagination from './pagination/Pagination';
 import { IHouses, House, IPagination } from '../types';
-import PageSize from './PageSize';
 
 const Layout = () => {
   const [houses, setHouses] = useState<House[] | []>([]);
@@ -89,23 +90,30 @@ const Layout = () => {
   }, []);
 
   return (
-    <>
-      <Search
-        value={searchValue}
-        handleChange={handleChange}
-        search={fetchSearchResult}
-        resultMessage={noResult}
-        reset={resetSearch}
-      />
-      {!loaded && 'Laddar'}
-      {loaded && <List data={houses} />}
-      {loaded && (
-        <>
-          <Pagination pages={pagination} handlePagination={fetchAllHouses} />
-          <PageSize pageSize={pageSize} handlePageSize={fetchAllHouses} />
-        </>
-      )}
-    </>
+    <div className={styles.mainSection}>
+      <div className={styles.listSection}>
+        <Search
+          value={searchValue}
+          handleChange={handleChange}
+          search={fetchSearchResult}
+          resultMessage={noResult}
+          reset={resetSearch}
+        />
+        {!loaded && 'Laddar'}
+        {loaded && (
+          <>
+            <List data={houses} />
+            <div className={styles.paginationsContainer}>
+              <PageSize pageSize={pageSize} handlePageSize={fetchAllHouses} />
+              <Pagination
+                pages={pagination}
+                handlePagination={fetchAllHouses}
+              />
+            </div>
+          </>
+        )}
+      </div>
+    </div>
   );
 };
 
