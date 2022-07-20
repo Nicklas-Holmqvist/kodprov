@@ -5,11 +5,13 @@ import List from './list/List';
 import Search from './Search';
 import Pagination from './pagination/Pagination';
 import { IHouses, House, IPagination } from '../types';
+import PageSize from './PageSize';
 
 const Layout = () => {
   const [houses, setHouses] = useState<House[] | []>([]);
   const [loaded, setLoaded] = useState<boolean>(false);
   const [pagination, setPagination] = useState<IPagination>({});
+  const [pageSize, setPageSize] = useState<number>(10);
   const [searchValue, setSearchValue] = useState<string>('');
   const [noResult, setNoResult] = useState<{
     msg: string;
@@ -20,7 +22,7 @@ const Layout = () => {
   });
 
   const basePage = 1;
-  const baseDisplayNumber = 15;
+  const baseDisplayNumber = 10;
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (noResult.resultBoolean === true && searchValue.length >= 0) {
@@ -34,6 +36,7 @@ const Layout = () => {
 
   const resetSearch = () => {
     fetchAllHouses(basePage, baseDisplayNumber);
+    setPageSize(baseDisplayNumber);
   };
 
   const fetchAllHouses = async (page: number, displayCount: number) => {
@@ -49,6 +52,7 @@ const Layout = () => {
     setHouses(data.houses);
     setLoaded(data.status);
     setPagination(data.links);
+    setPageSize(Number(data.links['first'].pageSize));
   };
 
   const fetchSearchResult = async () => {
@@ -65,6 +69,7 @@ const Layout = () => {
 
     if (!data.status) return;
     setPagination(data.links);
+    setPageSize(Number(data.links['first'].pageSize));
     if (data.houses.length === 0)
       return setNoResult((oldState) => ({
         ...oldState,
@@ -95,7 +100,10 @@ const Layout = () => {
       {!loaded && 'Laddar'}
       {loaded && <List data={houses} />}
       {loaded && (
-        <Pagination pages={pagination} handlePagination={fetchAllHouses} />
+        <>
+          <Pagination pages={pagination} handlePagination={fetchAllHouses} />
+          <PageSize pageSize={pageSize} handlePageSize={fetchAllHouses} />
+        </>
       )}
     </>
   );
