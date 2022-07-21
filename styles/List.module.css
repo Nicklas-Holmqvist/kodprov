@@ -10,18 +10,33 @@
     padding: 0.5rem;
 }
 
+.searchContainer {
+    padding: 0.4rem;
+    border: solid 1px black;
+}
+
 .searchForm {
-    padding: 0.5rem;
+    display: flex;
+    
 }
 
 .searchInput {
-    width: 20rem;
-    margin-left:0.5rem;
+    width: 25rem;
     padding: 0.4rem;
     padding-bottom: 0.2rem;
     border: none;
-    border-bottom: solid 1px black
+    background-color: none;
+}
 
+.searchError {
+    padding-top: 0.5rem;
+    padding-left: 0.5rem;
+}
+
+.searchReset {
+    display: inline;
+    align-self: center;
+    padding-left: 0.5rem;
 }
 
 .itemTitle {
