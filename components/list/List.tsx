@@ -9,7 +9,7 @@ const List = (props: { data: House[] }) => {
   return (
     <div className={styles.listContainer}>
       {houses.map((house, index: number) => (
-        <div key={index}>
+        <div key={house.name}>
           <ListItem house={house} />
         </div>
       ))}
