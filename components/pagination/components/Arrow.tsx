@@ -23,7 +23,6 @@ const Arrow = (props: {
       : Number(props.directionData['last'].page),
     last: Number(props.directionData['last'].page),
   };
-  // const [iconType, setIconType] = useState<string>(first);
 
   const handleChange = () => {
     switch (props.direction) {
