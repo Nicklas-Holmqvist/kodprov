@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
+
+import Icon from '../../../utils/icons/Icon';
 import { IPagination } from '../../../types';
 
 const Arrow = (props: {
   direction: string;
   directionData: IPagination;
+  icon: string;
   handlePagination: (page: number, displayCount: number) => void;
 }) => {
   const displayCount = Number(props.directionData.pageSize);
@@ -20,6 +23,7 @@ const Arrow = (props: {
       : Number(props.directionData['last'].page),
     last: Number(props.directionData['last'].page),
   };
+  // const [iconType, setIconType] = useState<string>(first);
 
   const handleChange = () => {
     switch (props.direction) {
@@ -42,7 +46,11 @@ const Arrow = (props: {
     }
   };
 
-  return <div onClick={handleChange}>{props.direction}</div>;
+  return (
+    <div onClick={handleChange}>
+      <Icon type={props.icon} alt={props.direction} />
+    </div>
+  );
 };
 
 export default Arrow;

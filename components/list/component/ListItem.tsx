@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 
 import Icon from '../../../utils/icons/Icon';
-import HouseInformation from './HouseInformation';
 import styles from '../../../styles/List.module.css';
-import arrowDown from '../../../utils/icons/svg/bi_arrow-down-square.svg';
 import arrowUp from '../../../utils/icons/svg/bi_arrow-up-square-fill.svg';
+import arrowDown from '../../../utils/icons/svg/bi_arrow-down-square.svg';
+import HouseInformation from './HouseInformation';
 import { House } from '../../../types';
 
 const ListItem = (props: { house: House }) => {
