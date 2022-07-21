@@ -9,7 +9,7 @@ const Arrow = (props: {
   icon: string;
   handlePagination: (page: number, displayCount: number) => void;
 }) => {
-  const displayCount = Number(props.directionData.pageSize);
+  const pageSize = Number(props.directionData['first'].pageSize);
   const pages = {
     first: Number(props.directionData['first'].page),
     back: props.directionData['next']
@@ -28,19 +28,19 @@ const Arrow = (props: {
     switch (props.direction) {
       case 'back':
         if (pages.activePage <= 1) return;
-        props.handlePagination(pages.back, displayCount);
+        props.handlePagination(pages.back, pageSize);
         break;
       case 'next':
         if (pages.activePage >= pages.last) return;
-        props.handlePagination(pages.next, displayCount);
+        props.handlePagination(pages.next, pageSize);
         break;
       case 'first':
         if (pages.activePage <= 1) return;
-        props.handlePagination(pages.first, displayCount);
+        props.handlePagination(pages.first, pageSize);
         break;
       case 'last':
         if (pages.activePage >= pages.last) return;
-        props.handlePagination(pages.last, displayCount);
+        props.handlePagination(pages.last, pageSize);
         break;
     }
   };

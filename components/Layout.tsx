@@ -36,8 +36,8 @@ const Layout = () => {
   };
 
   const resetSearch = () => {
-    fetchAllHouses(baseDisplayNumber, baseDisplayNumber);
-    setPageSize(baseDisplayNumber);
+    fetchAllHouses(basePage, baseDisplayNumber);
+    setPageSize(pageSize);
     setNoResult((oldState) => ({
       ...oldState,
       resultBoolean: false,
