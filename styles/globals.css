@@ -11,5 +11,14 @@ body {
 }
 
 input {
-  margin-left: 0.5rem
+  background: none;
+  border: none;
+}
+
+input:focus {
+  outline: none;
+}
+
+h2 {
+  font-size: 1.2rem;
 }

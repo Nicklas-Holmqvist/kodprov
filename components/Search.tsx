@@ -1,5 +1,7 @@
 import React from 'react';
 
+import reset from '../utils/icons/svg/clarity_close-line.svg';
+import Icon from '../utils/icons/Icon';
 import styles from '../styles/List.module.css';
 
 const Search = (props: {
@@ -10,16 +12,15 @@ const Search = (props: {
   reset: () => void;
 }) => {
   return (
-    <>
+    <div className={styles.searchSection}>
       <form
-        className={styles.searchForm}
+        className={styles.searchContainer}
         onSubmit={(event: React.ChangeEvent<SubmitEventInit>) => {
           event.preventDefault();
           props.value.length > 0 && props.search();
         }}
       >
-        <label>
-          Sök hus:
+        <label className={styles.searchLabel}>
           <input
             type="text"
             value={props.value}
@@ -28,16 +29,17 @@ const Search = (props: {
             className={styles.searchInput}
           />
         </label>
-        <input type="submit" value="Sök" />
-        <input
-          className={styles.searchReset}
-          type="button"
-          value="Reset"
-          onClick={props.reset}
-        />
+        {props.value.length > 0 && (
+          <div className={styles.searchReset} onClick={props.reset}>
+            <Icon type={reset} alt="reset" />
+          </div>
+        )}
+        <input className={styles.searchSubmit} type="submit" value="Sök" />
       </form>
-      {props.resultMessage.resultBoolean && <p>{props.resultMessage.msg}</p>}
-    </>
+      <div className={styles.searchError}>
+        {props.resultMessage.resultBoolean && <p>{props.resultMessage.msg}</p>}
+      </div>
+    </div>
   );
 };
 

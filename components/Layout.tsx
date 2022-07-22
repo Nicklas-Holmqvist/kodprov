@@ -27,16 +27,19 @@ const Layout = () => {
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (noResult.resultBoolean === true && searchValue.length >= 0) {
+      fetchAllHouses(basePage, baseDisplayNumber);
       setNoResult((oldState) => ({
         ...oldState,
         resultBoolean: false,
       }));
     }
+    if (searchValue.length >= 0) fetchAllHouses(basePage, baseDisplayNumber);
     setSearchValue(event.target.value);
   };
 
   const resetSearch = () => {
-    fetchAllHouses(basePage, baseDisplayNumber);
+    setSearchValue('');
+    fetchAllHouses(basePage, pageSize);
     setPageSize(pageSize);
     setNoResult((oldState) => ({
       ...oldState,
@@ -61,8 +64,6 @@ const Layout = () => {
   };
 
   const fetchSearchResult = async () => {
-    setSearchValue('');
-
     const options = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
