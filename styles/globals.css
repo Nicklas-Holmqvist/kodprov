@@ -22,3 +22,7 @@ input:focus {
 h2 {
   font-size: 1.2rem;
 }
+
+span {
+  font-weight: 600;
+}
