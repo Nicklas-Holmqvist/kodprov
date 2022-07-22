@@ -1,6 +1,6 @@
 import React from 'react';
 
-import reset from '../utils/icons/svg/clarity_close-line.svg';
+import reset from '../utils/icons/svg/bi_x-circle.svg';
 import Icon from '../utils/icons/Icon';
 import styles from '../styles/List.module.css';
 

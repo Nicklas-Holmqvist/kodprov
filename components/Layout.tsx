@@ -18,28 +18,26 @@ const Layout = () => {
     msg: string;
     resultBoolean: boolean;
   }>({
-    msg: 'Inget hus hittades, sök på hela namnet!',
+    msg: 'Inget hus hittades, försök med hela namnet!',
     resultBoolean: false,
   });
 
-  const basePage = 1;
-  const baseDisplayNumber = 10;
+  const page = 1;
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (noResult.resultBoolean === true && searchValue.length >= 0) {
-      fetchAllHouses(basePage, baseDisplayNumber);
+      fetchAllHouses(page, pageSize);
       setNoResult((oldState) => ({
         ...oldState,
         resultBoolean: false,
       }));
     }
-    if (searchValue.length >= 0) fetchAllHouses(basePage, baseDisplayNumber);
     setSearchValue(event.target.value);
   };
 
   const resetSearch = () => {
     setSearchValue('');
-    fetchAllHouses(basePage, pageSize);
+    fetchAllHouses(page, pageSize);
     setPageSize(pageSize);
     setNoResult((oldState) => ({
       ...oldState,
@@ -67,7 +65,7 @@ const Layout = () => {
     const options = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ searchValue }),
+      body: JSON.stringify({ searchValue, pageSize, page }),
     };
 
     const response = await fetch('api/search', options);
@@ -91,7 +89,7 @@ const Layout = () => {
   };
 
   useEffect(() => {
-    fetchAllHouses(basePage, baseDisplayNumber);
+    fetchAllHouses(page, pageSize);
   }, []);
 
   return (
@@ -105,7 +103,7 @@ const Layout = () => {
           reset={resetSearch}
         />
         {!loaded && 'Laddar'}
-        {loaded && (
+        {loaded && !noResult.resultBoolean && (
           <>
             <List data={houses} />
             <div className={styles.paginationsContainer}>
