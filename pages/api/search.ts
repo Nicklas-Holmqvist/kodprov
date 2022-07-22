@@ -8,6 +8,8 @@ export default async function handler(
   res: NextApiResponse<IExportData | IError>
 ) {
   const searchValue = req.body.searchValue.toLowerCase();
+  const page = req.body.basePage;
+  const pageSize = req.body.pageSize;
 
   const errorMsg: IError = {
     msg: 'No thrones to be found',
@@ -16,7 +18,7 @@ export default async function handler(
 
   try {
     const response = await fetch(
-      `https://www.anapioficeandfire.com/api/houses?name=house%20${searchValue}`
+      `https://www.anapioficeandfire.com/api/houses?name=house%20${searchValue}&page=${page}&pageSize=${pageSize}`
     );
     const data = await response.json();
     const pagination = parse(response.headers.get('Link'));
