@@ -1,11 +1,11 @@
 import type { NextPage } from 'next';
 
-import Layout from '../components/Layout';
+import Providers from '../providers/Providers';
 
 const Home: NextPage = () => {
   return (
     <>
-      <Layout />
+      <Providers />
     </>
   );
 };

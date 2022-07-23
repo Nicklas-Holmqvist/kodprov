@@ -7,6 +7,7 @@ import Search from './Search';
 import PageSize from './PageSize';
 import Pagination from './pagination/Pagination';
 import { IHouses, House, IPagination } from '../types';
+import { useHousesContext } from '../context/housesContext';
 
 const Layout = () => {
   const [houses, setHouses] = useState<House[] | []>([]);
@@ -23,6 +24,9 @@ const Layout = () => {
   });
 
   const page = 1;
+
+  const test = useHousesContext().house;
+  console.log(test);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (noResult.resultBoolean === true && searchValue.length >= 0) {
