@@ -1,15 +1,16 @@
 import React from 'react';
 
-import { House } from '../../types';
 import styles from '../../styles/List.module.css';
 import ListItem from './component/ListItem';
+import { useHousesContext } from '../../context/housesContext';
 
-const List = (props: { data: House[] }) => {
-  const houses = props.data;
+const List = () => {
+  const context = useHousesContext();
+  const houses = context.houses;
   return (
     <div className={styles.listContainer}>
-      {houses.map((house, index: number) => (
-        <div key={house.name}>
+      {houses.map((house, index) => (
+        <div key={`${house.name}${index}`}>
           <ListItem house={house} />
         </div>
       ))}
