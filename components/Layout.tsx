@@ -1,121 +1,27 @@
 import React from 'react';
-import { useEffect, useState } from 'react';
 
-import styles from '../styles/Layout.module.css';
 import List from './list/List';
+import styles from '../styles/Layout.module.css';
 import Search from './Search';
 import PageSize from './PageSize';
 import Pagination from './pagination/Pagination';
-import { IHouses, House, IPagination } from '../types';
 import { useHousesContext } from '../context/housesContext';
 
 const Layout = () => {
-  const [houses, setHouses] = useState<House[] | []>([]);
-  const [loaded, setLoaded] = useState<boolean>(false);
-  const [pagination, setPagination] = useState<IPagination>({});
-  const [pageSize, setPageSize] = useState<number>(10);
-  const [searchValue, setSearchValue] = useState<string>('');
-  const [noResult, setNoResult] = useState<{
-    msg: string;
-    resultBoolean: boolean;
-  }>({
-    msg: 'Inget hus hittades, försök med hela namnet!',
-    resultBoolean: false,
-  });
-
-  const page = 1;
-
-  const test = useHousesContext().house;
-  console.log(test);
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (noResult.resultBoolean === true && searchValue.length >= 0) {
-      fetchAllHouses(page, pageSize);
-      setNoResult((oldState) => ({
-        ...oldState,
-        resultBoolean: false,
-      }));
-    }
-    setSearchValue(event.target.value);
-  };
-
-  const resetSearch = () => {
-    setSearchValue('');
-    fetchAllHouses(page, pageSize);
-    setPageSize(pageSize);
-    setNoResult((oldState) => ({
-      ...oldState,
-      resultBoolean: false,
-    }));
-  };
-
-  const fetchAllHouses = async (page: number, displayCount: number) => {
-    const options = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ page, displayCount }),
-    };
-
-    const response = await fetch('api/houses', options);
-    const data: IHouses = await response.json();
-    if (!data.status) return;
-    setHouses(data.houses);
-    setLoaded(data.status);
-    setPagination(data.links);
-    setPageSize(Number(data.links['first'].pageSize));
-  };
-
-  const fetchSearchResult = async () => {
-    const options = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ searchValue, pageSize, page }),
-    };
-
-    const response = await fetch('api/search', options);
-    const data: IHouses = await response.json();
-
-    if (!data.status) return;
-    setPagination(data.links);
-    setPageSize(Number(data.links['first'].pageSize));
-    if (data.houses.length === 0)
-      return setNoResult((oldState) => ({
-        ...oldState,
-        resultBoolean: true,
-      }));
-    setLoaded(false);
-    setNoResult((oldState) => ({
-      ...oldState,
-      resultBoolean: false,
-    }));
-    setHouses(data.houses);
-    setLoaded(data.status);
-  };
-
-  useEffect(() => {
-    fetchAllHouses(page, pageSize);
-  }, []);
+  const context = useHousesContext();
+  const { loaded, noResult } = context;
 
   return (
     <div className={styles.mainSection}>
       <div className={styles.listSection}>
-        <Search
-          value={searchValue}
-          handleChange={handleChange}
-          search={fetchSearchResult}
-          resultMessage={noResult}
-          reset={resetSearch}
-        />
+        <Search />
         {!loaded && 'Laddar'}
         {loaded && !noResult.resultBoolean && (
           <>
-            <List data={houses} />
+            <List />
             <div className={styles.paginationsContainer}>
-              <PageSize pageSize={pageSize} handlePageSize={fetchAllHouses} />
-              <Pagination
-                pages={pagination}
-                handlePagination={fetchAllHouses}
-              />
+              <PageSize />
+              <Pagination />
             </div>
           </>
         )}
