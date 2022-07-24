@@ -24,9 +24,7 @@ const ListItem = (props: { house: House }) => {
             )}
           </div>
         </div>
-        <div className={styles.itemContent}>
-          {open && <HouseInformation house={house} />}
-        </div>
+        <>{open && <HouseInformation house={house} />}</>
       </div>
     </>
   );

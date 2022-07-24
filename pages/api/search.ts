@@ -1,13 +1,14 @@
 import parse from 'parse-link-header';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
-import { IError, IExportData, IHouses, IPagination } from '../../types';
+import { IError, IExportData } from '../../types';
+import { toLowerCase } from '../../utils/toLowerCase';
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<IExportData | IError>
 ) {
-  const searchValue = req.body.searchValue.toLowerCase();
+  const searchValue = toLowerCase(req.body.searchValue);
   const page = req.body.basePage;
   const pageSize = req.body.pageSize;
 

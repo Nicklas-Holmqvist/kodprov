@@ -2,7 +2,7 @@ import React from 'react';
 
 import Icon from './Icon';
 import reset from '../assets/svg/bi_x-circle.svg';
-import styles from '../styles/List.module.css';
+import styles from '../styles/Search.module.css';
 import { useHousesContext } from '../context/housesContext';
 
 const Search = () => {

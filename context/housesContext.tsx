@@ -36,7 +36,7 @@ export const HousesProvider: FunctionComponent = ({ children }) => {
     msg: string;
     resultBoolean: boolean;
   }>({
-    msg: 'Inget hus hittades, försök med hela namnet!',
+    msg: 'No house found by name, try with the full name!',
     resultBoolean: false,
   });
 
