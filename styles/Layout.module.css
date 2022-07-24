@@ -1,11 +1,21 @@
 .mainSection {
     width: 100%;
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
+}
+
+.headerContainer {
+    max-width: 15rem;
+    width: 100%;
+    margin: 4rem 0 2rem 0;
 }
 
 .listSection {
-    width: 42rem;
+    max-width: 42rem;
+    width: 100%;
+    padding: 0 1rem;
 }
 
 .paginationsContainer {
