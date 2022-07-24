@@ -3,12 +3,13 @@ import Image from 'next/image';
 
 import List from './list/List';
 import styles from '../styles/Layout.module.css';
-import Loader from '../utils/Loader';
+import Loader from './Loader';
 import Search from './Search';
 import PageSize from './PageSize';
 import Pagination from './pagination/Pagination';
 import gameOfThronesLogo from '../assets/img/png-transparent-a-game-of-thrones-logo-emblem-font-game-of-trones-game-emblem-text.png';
 import { useHousesContext } from '../context/housesContext';
+import Line from '../utils/Line';
 
 const Layout = () => {
   const context = useHousesContext();
@@ -25,6 +26,7 @@ const Layout = () => {
         {loaded && !noResult.resultBoolean && (
           <>
             <List />
+            <Line />
             <div className={styles.paginationsContainer}>
               <PageSize />
               <Pagination />
