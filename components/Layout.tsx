@@ -3,6 +3,7 @@ import Image from 'next/image';
 
 import List from './list/List';
 import styles from '../styles/Layout.module.css';
+import Loader from '../utils/Loader';
 import Search from './Search';
 import PageSize from './PageSize';
 import Pagination from './pagination/Pagination';
@@ -20,7 +21,7 @@ const Layout = () => {
       </div>
       <div className={styles.listSection}>
         <Search />
-        {!loaded && 'Laddar'}
+        {!loaded && <Loader />}
         {loaded && !noResult.resultBoolean && (
           <>
             <List />
