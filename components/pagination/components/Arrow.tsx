@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import styles from '../../../styles/Arrow.module.css';
-import Icon from '../../../utils/icons/Icon';
+import Icon from '../../Icon';
 import { useHousesContext } from '../../../context/housesContext';
 
 const Arrow = (props: { direction: string; icon: string }) => {

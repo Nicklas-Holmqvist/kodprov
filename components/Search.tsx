@@ -1,7 +1,7 @@
 import React from 'react';
 
-import reset from '../utils/icons/svg/bi_x-circle.svg';
-import Icon from '../utils/icons/Icon';
+import Icon from './Icon';
+import reset from '../assets/svg/bi_x-circle.svg';
 import styles from '../styles/List.module.css';
 import { useHousesContext } from '../context/housesContext';
 

@@ -6,7 +6,7 @@ import styles from '../styles/Layout.module.css';
 import Search from './Search';
 import PageSize from './PageSize';
 import Pagination from './pagination/Pagination';
-import gameOfThronesLogo from '../utils/img/png-transparent-a-game-of-thrones-logo-emblem-font-game-of-trones-game-emblem-text.png';
+import gameOfThronesLogo from '../assets/img/png-transparent-a-game-of-thrones-logo-emblem-font-game-of-trones-game-emblem-text.png';
 import { useHousesContext } from '../context/housesContext';
 
 const Layout = () => {
