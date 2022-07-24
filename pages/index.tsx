@@ -8,10 +8,12 @@ const Home: NextPage = () => {
     <>
       <Head>
         <title>Houses from Game of Thrones</title>
-        <style>
-          @import
-          url('https://fonts.googleapis.com/css2?family=Cinzel&family=Noto+Sans&display=swap');
-        </style>
+        <meta
+          property="og:title"
+          content="Code test to handle GOT house api from anapioficeandfire.com"
+          key="title"
+        />
+        <link rel="shortcut icon" href="/favicon.ico" />
       </Head>
       <Providers />
     </>
