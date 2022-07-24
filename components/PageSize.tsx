@@ -1,4 +1,6 @@
 import React from 'react';
+
+import styles from '../styles/PageSize.module.css';
 import { useHousesContext } from '../context/housesContext';
 
 const PageSize = () => {
@@ -13,8 +15,8 @@ const PageSize = () => {
   };
 
   return (
-    <>
-      <p>Antal per sida</p>
+    <div className={styles.pageSizeContainer}>
+      <p className={styles.pageSizeTitle}>Number per page:</p>
       <label>
         <select onChange={handleOnChange} value={pageSize}>
           {pageSizes.map((size: number, index: number) => (
@@ -24,7 +26,7 @@ const PageSize = () => {
           ))}
         </select>
       </label>
-    </>
+    </div>
   );
 };
 

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 
+import styles from '../../../styles/Arrow.module.css';
 import Icon from '../../../utils/icons/Icon';
 import { useHousesContext } from '../../../context/housesContext';
 
@@ -45,7 +46,7 @@ const Arrow = (props: { direction: string; icon: string }) => {
   };
 
   return (
-    <div onClick={handleChange}>
+    <div className={styles.arrowContainer} onClick={handleChange}>
       <Icon type={props.icon} alt={props.direction} />
     </div>
   );
