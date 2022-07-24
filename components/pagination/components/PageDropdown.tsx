@@ -1,5 +1,6 @@
 import React from 'react';
 
+import styles from '../../../styles/PageDropdown.module.css';
 import { useHousesContext } from '../../../context/housesContext';
 
 const PageDropdown = () => {
@@ -19,7 +20,7 @@ const PageDropdown = () => {
     : Number(pagination['last'].page);
 
   return (
-    <div>
+    <div className={styles.pageDropdownLabel}>
       <label>
         <select value={activePage} onChange={onChange}>
           {Array.from({ length: pages }, (page: number, index: number) => (

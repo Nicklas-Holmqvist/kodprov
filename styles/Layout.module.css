@@ -21,6 +21,7 @@
 .paginationsContainer {
     width: 25rem;
     display: flex;
+    flex: 1;
     flex-direction: row;
     justify-content: space-between;
     padding: 1rem 0.5rem 2rem 0.5rem;
@@ -28,11 +29,10 @@
 }
 
 @media only screen and (max-width: 600px) {
-    .listSection {
-        width: 100%;
-    }
 
     .paginationsContainer {
         width: 100%;
+        flex-direction: column;
+        align-items: center;
     }
   }

@@ -28,7 +28,7 @@ const Search = () => {
             type="text"
             value={searchValue}
             onChange={(event) => handleChange(event)}
-            placeholder="Sök på hela husets namn tex. Amber"
+            placeholder="Search for full name ex. Amber"
             className={styles.searchInput}
           />
         </label>
@@ -37,7 +37,7 @@ const Search = () => {
             <Icon type={reset} alt="reset" />
           </div>
         )}
-        <input className={styles.searchSubmit} type="submit" value="Sök" />
+        <input className={styles.searchSubmit} type="submit" value="Search" />
       </form>
       <div className={styles.searchError}>
         {noResult.resultBoolean && <p>{noResult.msg}</p>}
