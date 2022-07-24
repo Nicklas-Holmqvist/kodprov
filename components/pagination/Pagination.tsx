@@ -1,9 +1,9 @@
 import React from 'react';
 
-import first from '../../utils/icons/svg/first-arrow.svg';
-import prev from '../../utils/icons/svg/prev-arrow.svg';
-import next from '../../utils/icons/svg/next-arrow.svg';
-import last from '../../utils/icons/svg/last-arrow.svg';
+import first from '../../assets/svg/first-arrow.svg';
+import prev from '../../assets/svg/prev-arrow.svg';
+import next from '../../assets/svg/next-arrow.svg';
+import last from '../../assets/svg/last-arrow.svg';
 import Arrow from './components/Arrow';
 import styles from '../../styles/Pagination.module.css';
 import PageDropdown from './components/PageDropdown';
