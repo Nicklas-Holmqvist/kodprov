@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { House } from '../../../types';
-import Line from '../../../utils/Line';
 
 const HouseInformation = (props: { house: House }) => {
   const houseData = props.house;
@@ -37,7 +36,6 @@ const HouseInformation = (props: { house: House }) => {
           {data.data !== '' ? data.data : 'No information'}
         </p>
       ))}
-      <Line />
     </>
   );
 };
