@@ -1,16 +1,17 @@
 import parse from 'parse-link-header';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
-import { IError, IExportData } from '../../types';
-import { toLowerCase } from '../../utils/toLowerCase';
+import { IError, IExportData } from '../../../types';
+import { toLowerCase } from '../../../utils/toLowerCase';
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<IExportData | IError>
 ) {
-  const searchValue = toLowerCase(req.body.searchValue);
   const page = req.body.basePage;
   const pageSize = req.body.pageSize;
+  const { searchValue } = req.query;
+  const formatedSearchValue = toLowerCase(searchValue as string);
 
   const errorMsg: IError = {
     msg: 'No thrones to be found',
@@ -19,7 +20,7 @@ export default async function handler(
 
   try {
     const response = await fetch(
-      `https://www.anapioficeandfire.com/api/houses?name=house%20${searchValue}&page=${page}&pageSize=${pageSize}`
+      `https://www.anapioficeandfire.com/api/houses?name=house%20${formatedSearchValue}&page=${page}&pageSize=${pageSize}`
     );
     const data = await response.json();
     const pagination = parse(response.headers.get('Link'));

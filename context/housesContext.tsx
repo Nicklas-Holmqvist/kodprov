@@ -27,6 +27,9 @@ type Context = {
 };
 
 export const HousesProvider: FunctionComponent = ({ children }) => {
+  const basePage = 1;
+  const basePageSize = 10;
+
   const [houses, setHouses] = useState<House[] | []>([]);
   const [loaded, setLoaded] = useState<boolean>(false);
   const [pagination, setPagination] = useState<IPagination>({});
@@ -40,8 +43,6 @@ export const HousesProvider: FunctionComponent = ({ children }) => {
     resultBoolean: false,
   });
 
-  const page = 1;
-
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (noResult.resultBoolean === true && searchValue.length >= 0) {
       return resetSearch();
@@ -54,7 +55,7 @@ export const HousesProvider: FunctionComponent = ({ children }) => {
 
   const resetSearch = () => {
     setSearchValue('');
-    fetchAllHouses(page, pageSize);
+    fetchAllHouses(basePage, pageSize);
     setPageSize(pageSize);
     setNoResult((oldState) => ({
       ...oldState,
@@ -82,10 +83,10 @@ export const HousesProvider: FunctionComponent = ({ children }) => {
     const options = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ searchValue, pageSize, page }),
+      body: JSON.stringify({ pageSize, basePage }),
     };
 
-    const response = await fetch('api/search', options);
+    const response = await fetch(`api/houses/${searchValue}`, options);
     const data: IHouses = await response.json();
 
     if (!data.status) return;
@@ -106,7 +107,7 @@ export const HousesProvider: FunctionComponent = ({ children }) => {
   };
 
   useEffect(() => {
-    fetchAllHouses(page, pageSize);
+    fetchAllHouses(basePage, basePageSize);
   }, []);
 
   return (

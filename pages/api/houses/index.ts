@@ -1,7 +1,7 @@
 import parse from 'parse-link-header';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
-import { IError, IExportData, IHouses, IPagination } from '../../types';
+import { IError, IExportData } from '../../../types';
 
 export default async function handler(
   req: NextApiRequest,
