@@ -9,11 +9,12 @@ const Search = () => {
   const context = useHousesContext();
   const {
     searchValue,
-    handleChange,
+    handleInputChange,
     fetchSearchResult,
     resetSearch,
     noResult,
   } = context;
+
   return (
     <div className={styles.searchSection}>
       <form
@@ -27,7 +28,7 @@ const Search = () => {
           <input
             type="text"
             value={searchValue}
-            onChange={(event) => handleChange(event)}
+            onChange={(event) => handleInputChange(event)}
             placeholder="Search for full name ex. Amber"
             className={styles.searchInput}
           />
@@ -39,7 +40,10 @@ const Search = () => {
         )}
         <input className={styles.searchSubmit} type="submit" value="Search" />
       </form>
-      <div className={styles.searchError}>
+      <div className={styles.hardReset} onClick={resetSearch}>
+        <span>Reset the list</span>
+      </div>
+      <div className={styles.searchReset}>
         {noResult.resultBoolean && <p>{noResult.msg}</p>}
       </div>
     </div>

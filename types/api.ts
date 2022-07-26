@@ -1,5 +1,6 @@
+import parse from 'parse-link-header';
+
 import { IHouses } from './houses';
-import { IPagination } from './pagination';
 
 export interface IError {
   msg: string;
@@ -9,5 +10,5 @@ export interface IError {
 export interface IExportData {
   houses: IHouses[];
   status: boolean;
-  links: IPagination;
+  links: parse.Links | null;
 }

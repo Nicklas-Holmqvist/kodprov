@@ -11,8 +11,8 @@ const PageDropdown = () => {
 
   const onChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const pageNumber = Number(event.target.value);
-    const displayCount = Number(pagination['last'].pageSize);
-    fetchAllHouses(pageNumber, displayCount);
+    const pageSize = Number(pagination['last'].pageSize);
+    fetchAllHouses(pageNumber, pageSize);
   };
 
   const activePage = pagination['next']

@@ -1,0 +1,19 @@
+POST http://localhost:3000/api/houses/
+Content-Type: application/json
+
+{
+    "page": "3",
+    "pageSize": "30"
+}
+
+###
+
+POST http://localhost:3000/api/houses/wells
+Content-Type: application/json
+
+{
+    "page": "1",
+    "pageSize": "10"
+}
+
+###

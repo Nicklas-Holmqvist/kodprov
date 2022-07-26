@@ -1,5 +1,6 @@
 .pageSizeContainer {
     display: flex;
+    flex: 1;
     justify-content: flex-start;
     width: 15rem;
 }
@@ -9,7 +10,7 @@
     padding-right: 0.5rem;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 860px) {
 
     .pageSizeContainer {
         justify-content: center;

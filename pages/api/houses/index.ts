@@ -8,7 +8,7 @@ export default async function handler(
   res: NextApiResponse<IExportData | IError>
 ) {
   const page = req.body.page;
-  const displayCount = req.body.displayCount;
+  const pageSize = req.body.pageSize;
 
   const errorMsg: IError = {
     msg: 'No thrones to be found',
@@ -17,10 +17,10 @@ export default async function handler(
 
   try {
     const response = await fetch(
-      `https://www.anapioficeandfire.com/api/houses?page=${page}&pageSize=${displayCount}`
+      `https://www.anapioficeandfire.com/api/houses?page=${page}&pageSize=${pageSize}`
     );
     const data = await response.json();
-    const pagination = parse(response.headers.get('Link'));
+    const pagination: parse.Links | null = parse(response.headers.get('Link'));
     const exportData: IExportData = {
       houses: data,
       status: true,
