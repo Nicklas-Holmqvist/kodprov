@@ -1,34 +1,49 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Code test for Scandinaviaphoto
 
-## Getting Started
+## Task
 
-First, run the development server:
+- Build in HTML/CSS/JS, any framework and library
+- Create a list of all houses in Game of Thrones with the api [anapioficeandfire](https://www.anapioficeandfire.com/api/houses).
+- Show and hide information that is avalible in the data
+- Filter through search
 
+## Setup
+
+My first choice would have been ReactJS as I worked alot in that framework and MERN-stack overall.
+To setup a ReactJS/Express/NodeJS whould have been prefered but I really wanna try NextJS from the start.
+I have been working in NextJS but not from the start so this was my challange for myself in this project.
+
+### Project-stack and npm packages
+- NextJS
+- Typescript
+- Parse-link-header
+
+## The basics
+
+The basics in the project is:
+- There is two api-routes in pages, one for all houses and one for search with an dynamic route.
+- A context that handles all the basics for the page to work. I feel it is more simple in that way
+- There are three main components in the layout, Search, List and Paginations
+
+### Thoughts about the flow
+I think that the api is old and not very flexible. It has a limit of fetches per day, how many items per page there is in one fetch and no joker search.
+You have to search for the full house title or other data avalible to get any data from it and I choosed this basic way with a modification. I already filled in "house " in the url to fetch and that made it more simpler to a end-users view. Because this was a time limited project and I am still a junior developer. I haven't got the experience of other fetch methods that was avalible. But that said, I have learned alot and I really wanna add, try more stuff.
+
+## Getting it running
+
+- Clone the repo
+- Install dependencies: 
+```bash
+npm install
+```
+```bash
+yarn install
+```
+- Run developer server: 
 ```bash
 npm run dev
-# or
+```
+```bash
 yarn dev
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
