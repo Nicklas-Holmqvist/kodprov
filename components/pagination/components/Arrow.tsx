@@ -9,6 +9,8 @@ const Arrow = (props: { direction: string; icon: string }) => {
   const { pagination, fetchAllHouses } = context;
 
   const pageSize = Number(pagination['first'].pageSize);
+  console.log(props.direction);
+  console.log(pagination);
 
   const pages = {
     first: Number(pagination['first'].page),
@@ -28,7 +30,9 @@ const Arrow = (props: { direction: string; icon: string }) => {
     switch (props.direction) {
       case 'back':
         if (pages.activePage <= 1) return;
-        fetchAllHouses(pages.back, pageSize);
+        if (pages.activePage === pages.last)
+          fetchAllHouses(pages.last - 1, pageSize);
+        else fetchAllHouses(pages.back, pageSize);
         break;
       case 'next':
         if (pages.activePage >= pages.last) return;

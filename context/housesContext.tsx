@@ -20,9 +20,9 @@ type Context = {
   pagination: IPagination;
   pageSize: number;
   searchValue: string;
-  handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  handleInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   resetSearch: () => void;
-  fetchAllHouses: (page: number, displayCount: number) => void;
+  fetchAllHouses: (page: number, pageSize: number) => void;
   fetchSearchResult: () => void;
 };
 
@@ -43,12 +43,9 @@ export const HousesProvider: FunctionComponent = ({ children }) => {
     resultBoolean: false,
   });
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (noResult.resultBoolean === true && searchValue.length >= 0) {
       return resetSearch();
-    }
-    if (noResult.resultBoolean === false && searchValue.length >= 0) {
-      resetSearch();
     }
     setSearchValue(event.target.value);
   };
@@ -63,11 +60,17 @@ export const HousesProvider: FunctionComponent = ({ children }) => {
     }));
   };
 
-  const fetchAllHouses = async (page: number, displayCount: number) => {
+  /**
+   * Gets a list of houses queried by the params
+   * @param page pagenumber in the pagination that will be fetch in the api query
+   * @param pageSize how many items to show per page, 10-50
+   * @returns list of houses
+   */
+  const fetchAllHouses = async (page: number, pageSize: number) => {
     const options = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ page, displayCount }),
+      body: JSON.stringify({ page, pageSize }),
     };
 
     const response = await fetch('api/houses', options);
@@ -79,6 +82,9 @@ export const HousesProvider: FunctionComponent = ({ children }) => {
     setPageSize(Number(data.links['first'].pageSize));
   };
 
+  /**
+   * Gets the result of a search by housename
+   */
   const fetchSearchResult = async () => {
     const options = {
       method: 'POST',
@@ -92,6 +98,7 @@ export const HousesProvider: FunctionComponent = ({ children }) => {
     if (!data.status) return;
     setPagination(data.links);
     setPageSize(Number(data.links['first'].pageSize));
+
     if (data.houses.length === 0)
       return setNoResult((oldState) => ({
         ...oldState,
@@ -106,6 +113,9 @@ export const HousesProvider: FunctionComponent = ({ children }) => {
     setLoaded(data.status);
   };
 
+  /**
+   * Runs at start once to fetch the list
+   */
   useEffect(() => {
     fetchAllHouses(basePage, basePageSize);
   }, []);
@@ -119,7 +129,7 @@ export const HousesProvider: FunctionComponent = ({ children }) => {
         noResult,
         pagination,
         searchValue,
-        handleChange,
+        handleInputChange,
         resetSearch,
         fetchAllHouses,
         fetchSearchResult,

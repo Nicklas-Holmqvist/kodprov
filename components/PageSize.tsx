@@ -16,7 +16,7 @@ const PageSize = () => {
 
   return (
     <div className={styles.pageSizeContainer}>
-      <p className={styles.pageSizeTitle}>Number per page:</p>
+      <p className={styles.pageSizeTitle}>Items per page:</p>
       <label>
         <select onChange={handleOnChange} value={pageSize}>
           {pageSizes.map((size: number, index: number) => (
