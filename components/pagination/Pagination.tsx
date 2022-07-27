@@ -7,10 +7,10 @@ import first from '../../assets/svg/first-arrow.svg';
 import Arrow from './Arrow';
 import styles from '../../styles/Pagination.module.css';
 import PageDropdown from './PageDropdown';
-import { IPagination } from '../../types';
+import { Pagination } from '../../types/pagination';
 
 export interface PaginationProps {
-  pagination: IPagination;
+  pagination: Pagination;
   onPageChange?: (page: number) => void;
 }
 

@@ -1,8 +1,8 @@
 import React from 'react';
 
 import styles from '../../styles/HouseList.module.css';
-import ListItem from './ListItem';
-import { House } from '../../types';
+import ListItem from './HouseListItem';
+import { House } from '../../types/houses';
 
 export interface HouseListProps {
   houses: House[];

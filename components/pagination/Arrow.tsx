@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-import styles from '../../styles/Arrow.module.css';
 import Icon from '../Icon';
+import styles from '../../styles/Arrow.module.css';
 
 export interface ArrowProps extends React.HTMLAttributes<HTMLDivElement> {
   direction: string;
@@ -11,7 +11,7 @@ export interface ArrowProps extends React.HTMLAttributes<HTMLDivElement> {
 const Arrow: React.FC<ArrowProps> = ({ direction, icon, ...props }) => {
   return (
     <div className={styles.arrowContainer} {...props}>
-      <Icon type={icon} alt={direction} />
+      <Icon src={icon} alt={direction} />
     </div>
   );
 };

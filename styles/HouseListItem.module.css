@@ -1,0 +1,11 @@
+.listItem {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem;
+}
+
+.itemTitle {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}

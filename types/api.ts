@@ -1,14 +1,14 @@
 import parse from 'parse-link-header';
 
-import { IHouses } from './houses';
+import { Houses } from './houses';
 
-export interface IError {
+export interface Error {
   msg: string;
   status: boolean;
 }
 
-export interface IExportData {
-  houses: IHouses[];
+export interface ExportData {
+  houses: Houses[];
   status: boolean;
   links: parse.Links | null;
 }

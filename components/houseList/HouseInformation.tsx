@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { House } from '../../types';
+import { House } from '../../types/houses';
 
 export interface houseInformationProps {
   houseData: House;
