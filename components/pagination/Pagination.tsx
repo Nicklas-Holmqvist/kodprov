@@ -7,17 +7,58 @@ import first from '../../assets/svg/first-arrow.svg';
 import Arrow from './Arrow';
 import styles from '../../styles/Pagination.module.css';
 import PageDropdown from './PageDropdown';
+import { IPagination } from '../../types';
 
-export interface Pagination {}
+export interface PaginationProps {
+  pagination: IPagination;
+  onPageChange?: (page: number) => void;
+}
 
-const Pagination: React.FC<Pagination> = () => {
+const Pagination: React.FC<PaginationProps> = ({
+  pagination,
+  onPageChange,
+}) => {
+  const pages = {
+    first: Number(pagination['first'].page),
+    back: pagination['prev'] ? Number(pagination['prev'].page) : undefined,
+    activePage: pagination['next']
+      ? Number(pagination['next'].page) - 1
+      : Number(pagination['last'].page),
+    next: pagination['next'] ? Number(pagination['next'].page) : undefined,
+    last: Number(pagination['last'].page),
+  };
+
   return (
     <div className={styles.paginationContainer}>
-      <Arrow icon={first} direction={'first'} />
-      <Arrow icon={prev} direction={'back'} />
-      <PageDropdown />
-      <Arrow icon={next} direction={'next'} />
-      <Arrow icon={last} direction={'last'} />
+      <Arrow
+        icon={first}
+        direction={'first'}
+        onClick={() =>
+          pages.activePage !== pages.first && onPageChange?.(pages.first)
+        }
+      />
+      <Arrow
+        icon={prev}
+        direction={'back'}
+        onClick={() => pages.back && onPageChange?.(pages.back)}
+      />
+      <PageDropdown
+        pageSize={pages.last}
+        page={pages.activePage}
+        onChange={(page) => onPageChange?.(page)}
+      />
+      <Arrow
+        icon={next}
+        direction={'next'}
+        onClick={() => pages.next && onPageChange?.(pages.next)}
+      />
+      <Arrow
+        icon={last}
+        direction={'last'}
+        onClick={() =>
+          pages.activePage !== pages.last && onPageChange?.(pages.last)
+        }
+      />
     </div>
   );
 };
