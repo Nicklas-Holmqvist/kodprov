@@ -10,6 +10,7 @@ import Pagination from './pagination/Pagination';
 import gameOfThronesLogo from '../assets/img/png-transparent-a-game-of-thrones-logo-emblem-font-game-of-trones-game-emblem-text.png';
 import { IPagination } from '../types/pagination';
 import { House, IHouses } from '../types/houses';
+import { formatStringValue } from '../utils/formatStringValue';
 
 export interface NoResult {
   msg: string;
@@ -80,7 +81,9 @@ const Layout: React.FC<Layout> = () => {
       body: JSON.stringify({ pageSize, basePage }),
     };
 
-    const response = await fetch(`api/houses/${searchValue}`, options);
+    const formatedSearchValue = formatStringValue(searchValue, 'house ', '');
+
+    const response = await fetch(`api/houses/${formatedSearchValue}`, options);
     const data: IHouses = await response.json();
 
     if (!data.status) return;
