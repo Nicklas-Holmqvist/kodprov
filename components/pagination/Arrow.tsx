@@ -1,16 +1,19 @@
 import React, { useState } from 'react';
 
-import styles from '../../../styles/Arrow.module.css';
-import Icon from '../../Icon';
-import { useHousesContext } from '../../../context/housesContext';
+import styles from '../../styles/Arrow.module.css';
+import Icon from '../Icon';
+import { useHousesContext } from '../../context/housesContext';
 
-const Arrow = (props: { direction: string; icon: string }) => {
+export interface ArrowProps {
+  direction: string;
+  icon: string;
+}
+
+const Arrow: React.FC<ArrowProps> = ({ direction, icon }) => {
   const context = useHousesContext();
   const { pagination, fetchAllHouses } = context;
 
   const pageSize = Number(pagination['first'].pageSize);
-  console.log(props.direction);
-  console.log(pagination);
 
   const pages = {
     first: Number(pagination['first'].page),
@@ -27,7 +30,7 @@ const Arrow = (props: { direction: string; icon: string }) => {
   };
 
   const handleChange = () => {
-    switch (props.direction) {
+    switch (direction) {
       case 'back':
         if (pages.activePage <= 1) return;
         if (pages.activePage === pages.last)
@@ -51,7 +54,7 @@ const Arrow = (props: { direction: string; icon: string }) => {
 
   return (
     <div className={styles.arrowContainer} onClick={handleChange}>
-      <Icon type={props.icon} alt={props.direction} />
+      <Icon type={icon} alt={direction} />
     </div>
   );
 };

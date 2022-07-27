@@ -5,7 +5,9 @@ import reset from '../assets/svg/bi_x-circle.svg';
 import styles from '../styles/Search.module.css';
 import { useHousesContext } from '../context/housesContext';
 
-const Search = () => {
+export interface SearchProps {}
+
+const Search: React.FC<SearchProps> = () => {
   const context = useHousesContext();
   const {
     searchValue,

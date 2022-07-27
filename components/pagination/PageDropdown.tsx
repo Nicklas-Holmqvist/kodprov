@@ -1,9 +1,11 @@
 import React from 'react';
 
-import styles from '../../../styles/PageDropdown.module.css';
-import { useHousesContext } from '../../../context/housesContext';
+import styles from '../../styles/PageDropdown.module.css';
+import { useHousesContext } from '../../context/housesContext';
 
-const PageDropdown = () => {
+export interface PageDropdownProps {}
+
+const PageDropdown: React.FC<PageDropdownProps> = () => {
   const context = useHousesContext();
   const { pagination, fetchAllHouses } = context;
 

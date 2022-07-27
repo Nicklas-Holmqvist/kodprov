@@ -3,7 +3,9 @@ import React from 'react';
 import styles from '../styles/PageSize.module.css';
 import { useHousesContext } from '../context/housesContext';
 
-const PageSize = () => {
+export interface PageSizeProps {}
+
+const PageSize: React.FC<PageSizeProps> = () => {
   const context = useHousesContext();
   const { pageSize, fetchAllHouses } = context;
 

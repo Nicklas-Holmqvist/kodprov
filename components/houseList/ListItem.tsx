@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
 
-import Icon from '../../Icon';
-import styles from '../../../styles/List.module.css';
-import arrowUp from '../../../assets/svg/bi_arrow-up-square-fill.svg';
-import arrowDown from '../../../assets/svg/bi_arrow-down-square.svg';
+import Icon from '../Icon';
+import styles from '../../styles/HouseList.module.css';
+import arrowUp from '../../assets/svg/bi_arrow-up-square-fill.svg';
+import arrowDown from '../../assets/svg/bi_arrow-down-square.svg';
 import HouseInformation from './HouseInformation';
-import { House } from '../../../types';
+import { House } from '../../types';
 
-const ListItem = (props: { house: House }) => {
-  const house = props.house;
+export interface ListItemProps {
+  house: House;
+}
 
+const ListItem: React.FC<ListItemProps> = ({ house }) => {
   const [open, setOpen] = useState<boolean>(false);
   return (
     <>
@@ -24,7 +26,7 @@ const ListItem = (props: { house: House }) => {
             )}
           </div>
         </div>
-        <>{open && <HouseInformation house={house} />}</>
+        <>{open && <HouseInformation houseData={house} />}</>
       </div>
     </>
   );

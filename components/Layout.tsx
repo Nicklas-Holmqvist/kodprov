@@ -1,8 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 
-import List from './list/List';
-import Line from '../utils/Line';
+import HouseList from './houseList/HouseList';
 import styles from '../styles/Layout.module.css';
 import Loader from './Loader';
 import Search from './Search';
@@ -11,7 +10,9 @@ import Pagination from './pagination/Pagination';
 import gameOfThronesLogo from '../assets/img/png-transparent-a-game-of-thrones-logo-emblem-font-game-of-trones-game-emblem-text.png';
 import { useHousesContext } from '../context/housesContext';
 
-const Layout = () => {
+export interface Layout {}
+
+const Layout: React.FC<Layout> = () => {
   const context = useHousesContext();
   const { loaded, noResult } = context;
 
@@ -25,8 +26,7 @@ const Layout = () => {
         {!loaded && <Loader />}
         {loaded && !noResult.resultBoolean && (
           <>
-            <List />
-            <Line />
+            <HouseList />
             <div className={styles.paginationsContainer}>
               <PageSize />
               <Pagination />
