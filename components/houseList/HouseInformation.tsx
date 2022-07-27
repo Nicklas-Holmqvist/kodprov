@@ -1,10 +1,12 @@
 import React from 'react';
 
-import { House } from '../../../types';
+import { House } from '../../types';
 
-const HouseInformation = (props: { house: House }) => {
-  const houseData = props.house;
+export interface houseInformationProps {
+  houseData: House;
+}
 
+const HouseInformation: React.FC<houseInformationProps> = ({ houseData }) => {
   const house = [
     {
       title: 'House',

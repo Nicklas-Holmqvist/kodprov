@@ -3,7 +3,9 @@ import React from 'react';
 
 import styles from '../styles/ErrorPage.module.css';
 
-const ErrorPage = () => {
+export interface ErrorPageProps {}
+
+const ErrorPage: React.FC<ErrorPageProps> = () => {
   return (
     <div className={styles.center}>
       <h1>You have been betrayd!</h1>

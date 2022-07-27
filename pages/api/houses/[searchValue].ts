@@ -1,7 +1,6 @@
 import parse from 'parse-link-header';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
-import { toLowerCase } from '../../../utils/toLowerCase';
 import { IError, IExportData } from '../../../types';
 
 export default async function handler(
@@ -11,7 +10,7 @@ export default async function handler(
   const page = req.body.basePage;
   const pageSize = req.body.pageSize;
   const { searchValue } = req.query;
-  const formatedSearchValue = toLowerCase(searchValue as string);
+  const formatedSearchValue = searchValue.toLowerCase();
 
   const errorMsg: IError = {
     msg: 'No thrones to be found',

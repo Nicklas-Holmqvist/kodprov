@@ -3,17 +3,22 @@ import Image from 'next/image';
 
 import styles from '../styles/Icon.module.css';
 
-const Icon = (props: { type: string; alt: string }) => {
-  const iconSize: { height: number; width: number } = { height: 20, width: 20 };
-  if (!props.type) {
-    return <span>{props.alt}</span>;
+export interface IconProps {
+  type: string;
+  alt: string;
+  size?: number;
+}
+
+const Icon: React.FC<IconProps> = ({ type, alt, size = 20 }) => {
+  if (!type) {
+    return <span>{alt}</span>;
   }
   return (
     <Image
-      src={props.type}
-      height={iconSize.height}
-      width={iconSize.width}
-      alt={props.alt}
+      src={type}
+      height={size}
+      width={size}
+      alt={alt}
       className={styles.icon}
     />
   );

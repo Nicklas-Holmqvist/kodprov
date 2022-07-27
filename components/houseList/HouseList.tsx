@@ -1,10 +1,12 @@
 import React from 'react';
 
-import styles from '../../styles/List.module.css';
-import ListItem from './component/ListItem';
+import styles from '../../styles/HouseList.module.css';
+import ListItem from './ListItem';
 import { useHousesContext } from '../../context/housesContext';
 
-const List = () => {
+export interface HouseListProps {}
+
+const HouseList: React.FC<HouseListProps> = () => {
   const context = useHousesContext();
   const houses = context.houses;
   return (
@@ -18,4 +20,4 @@ const List = () => {
   );
 };
 
-export default List;
+export default HouseList;
