@@ -1,6 +1,6 @@
 import { IPagination } from './pagination';
 
-export interface IHouses {
+export interface Houses {
   houses: House[];
   status: boolean;
   links: IPagination;

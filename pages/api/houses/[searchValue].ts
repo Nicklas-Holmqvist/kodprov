@@ -1,35 +1,34 @@
 import parse from 'parse-link-header';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
-import { IError, IExportData } from '../../../types';
+import { Error, ExportData } from '../../../types/api';
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<IExportData | IError>
+  res: NextApiResponse<ExportData | Error>
 ) {
   const page = req.body.basePage;
   const pageSize = req.body.pageSize;
   const { searchValue } = req.query;
-  const formatedSearchValue = searchValue.toLowerCase();
 
-  const errorMsg: IError = {
+  const errorMsg: Error = {
     msg: 'No thrones to be found',
     status: false,
   };
 
   try {
     const response = await fetch(
-      `https://www.anapioficeandfire.com/api/houses?name=house%20${formatedSearchValue}&page=${page}&pageSize=${pageSize}`
+      `https://www.anapioficeandfire.com/api/houses?name=house%20${searchValue}&page=${page}&pageSize=${pageSize}`
     );
     const data = await response.json();
     const pagination: parse.Links | null = parse(response.headers.get('Link'));
-    const exportData: IExportData = {
+    const exportData: ExportData = {
       houses: data,
       status: true,
       links: pagination,
     };
     res.status(200).json(exportData);
   } catch (error) {
-    res.status(400).json(errorMsg);
+    res.status(500).json(errorMsg);
   }
 }

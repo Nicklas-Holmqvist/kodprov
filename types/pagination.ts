@@ -1,8 +1,8 @@
-export interface IPagination {
-  [key: string]: IPage;
+export interface Pagination {
+  [key: string]: Page;
 }
 
-export interface IPage {
+export interface Page {
   page: string;
   pageSize: string;
   rel: string;

@@ -40,7 +40,7 @@ const Search: React.FC<SearchProps> = ({
         </label>
         {searchValue.length > 0 && (
           <div className={styles.searchReset} onClick={resetSearch}>
-            <Icon type={reset} alt="reset" />
+            <Icon src={reset} alt="reset" />
           </div>
         )}
         <input className={styles.searchSubmit} type="submit" value="Search" />

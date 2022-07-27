@@ -8,8 +8,8 @@ import PageSize from './PageSize';
 import HouseList from './houseList/HouseList';
 import Pagination from './pagination/Pagination';
 import gameOfThronesLogo from '../assets/img/png-transparent-a-game-of-thrones-logo-emblem-font-game-of-trones-game-emblem-text.png';
-import { IPagination } from '../types/pagination';
-import { House, IHouses } from '../types/houses';
+import { Pagination as PaginationInterface } from '../types/pagination';
+import { House, Houses } from '../types/houses';
 import { formatStringValue } from '../utils/formatStringValue';
 
 export interface NoResult {
@@ -17,16 +17,16 @@ export interface NoResult {
   resultBoolean: boolean;
 }
 
-export interface Layout {}
+export interface LayoutProps {}
 
-const Layout: React.FC<Layout> = () => {
+const Layout: React.FC<LayoutProps> = () => {
   const basePage = 1;
   const basePageSize = 10;
 
   const [houses, setHouses] = useState<House[]>([]);
   const [loaded, setLoaded] = useState<boolean>(false);
-  const [pagination, setPagination] = useState<IPagination>({});
   const [pageSize, setPageSize] = useState<number>(10);
+  const [pagination, setPagination] = useState<PaginationInterface>({});
   const [searchValue, setSearchValue] = useState<string>('');
   const [noResult, setNoResult] = useState<NoResult>({
     msg: 'No house found by name, try with the full name!',
@@ -61,7 +61,7 @@ const Layout: React.FC<Layout> = () => {
       };
 
       const response = await fetch('api/houses', options);
-      const data: IHouses = await response.json();
+      const data: Houses = await response.json();
       if (!data.status) return;
       setHouses(data.houses);
       setLoaded(data.status);
@@ -81,10 +81,14 @@ const Layout: React.FC<Layout> = () => {
       body: JSON.stringify({ pageSize, basePage }),
     };
 
-    const formatedSearchValue = formatStringValue(searchValue, 'house ', '');
+    const formatedSearchValue = formatStringValue(
+      searchValue.toLowerCase(),
+      'house ',
+      ''
+    ).toLowerCase();
 
     const response = await fetch(`api/houses/${formatedSearchValue}`, options);
-    const data: IHouses = await response.json();
+    const data: Houses = await response.json();
 
     if (!data.status) return;
     setPagination(data.links);
