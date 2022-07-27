@@ -3,20 +3,23 @@ import React from 'react';
 import Icon from './Icon';
 import reset from '../assets/svg/bi_x-circle.svg';
 import styles from '../styles/Search.module.css';
-import { useHousesContext } from '../context/housesContext';
+import { NoResult } from './Layout';
 
-export interface SearchProps {}
+export interface SearchProps {
+  noResult: NoResult;
+  searchValue: string;
+  resetSearch: () => void;
+  onInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  fetchSearchResult: () => void;
+}
 
-const Search: React.FC<SearchProps> = () => {
-  const context = useHousesContext();
-  const {
-    searchValue,
-    handleInputChange,
-    fetchSearchResult,
-    resetSearch,
-    noResult,
-  } = context;
-
+const Search: React.FC<SearchProps> = ({
+  noResult,
+  searchValue,
+  resetSearch,
+  onInputChange,
+  fetchSearchResult,
+}) => {
   return (
     <div className={styles.searchSection}>
       <form
@@ -30,7 +33,7 @@ const Search: React.FC<SearchProps> = () => {
           <input
             type="text"
             value={searchValue}
-            onChange={(event) => handleInputChange(event)}
+            onChange={(event) => onInputChange(event)}
             placeholder="Search for full name ex. Amber"
             className={styles.searchInput}
           />
@@ -42,9 +45,6 @@ const Search: React.FC<SearchProps> = () => {
         )}
         <input className={styles.searchSubmit} type="submit" value="Search" />
       </form>
-      <div className={styles.hardReset} onClick={resetSearch}>
-        <span>Reset the list</span>
-      </div>
       <div className={styles.searchReset}>
         {noResult.resultBoolean && <p>{noResult.msg}</p>}
       </div>
