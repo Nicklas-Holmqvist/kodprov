@@ -8,9 +8,8 @@ import PageSize from './PageSize';
 import HouseList from './houseList/HouseList';
 import Pagination from './pagination/Pagination';
 import gameOfThronesLogo from '../assets/img/png-transparent-a-game-of-thrones-logo-emblem-font-game-of-trones-game-emblem-text.png';
-import { Pagination as PaginationInterface } from '../types/pagination';
+import { Pagination as PaginationInterface } from './pagination/Pagination';
 import { House, Houses } from '../types/houses';
-import { formatStringValue } from '../utils/formatStringValue';
 
 export interface NoResult {
   msg: string;
@@ -81,11 +80,7 @@ const Layout: React.FC<LayoutProps> = () => {
       body: JSON.stringify({ pageSize, basePage }),
     };
 
-    const formatedSearchValue = formatStringValue(
-      searchValue.toLowerCase(),
-      'house ',
-      ''
-    ).toLowerCase();
+    const formatedSearchValue = searchValue.toLowerCase().replace('house ', '');
 
     const response = await fetch(`api/houses/${formatedSearchValue}`, options);
     const data: Houses = await response.json();

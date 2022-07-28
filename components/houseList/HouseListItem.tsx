@@ -17,7 +17,7 @@ const HouseListItem: React.FC<ListItemProps> = ({ house }) => {
     <div className={styles.listItem}>
       <div className={styles.itemTitle}>
         <h2 onClick={() => setOpen(!open)}>{house.name}</h2>
-        <div onClick={() => setOpen(!open)}>
+        <div onClick={() => setOpen(!open)} className={styles.itemButton}>
           {open ? (
             <Icon src={arrowUp} alt="stäng" />
           ) : (

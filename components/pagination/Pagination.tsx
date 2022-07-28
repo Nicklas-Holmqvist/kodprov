@@ -7,7 +7,17 @@ import first from '../../assets/svg/first-arrow.svg';
 import Arrow from './Arrow';
 import styles from '../../styles/Pagination.module.css';
 import PageDropdown from './PageDropdown';
-import { Pagination } from '../../types/pagination';
+
+export interface Pagination {
+  [key: string]: Page;
+}
+
+export interface Page {
+  page: string;
+  pageSize: string;
+  rel: string;
+  url: string;
+}
 
 export interface PaginationProps {
   pagination: Pagination;
