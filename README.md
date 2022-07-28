@@ -38,9 +38,10 @@ I'm still learning alot and I can see more things to add in this project but tha
 ### Styling approach
 
 Because this task was to make a list of houses my approach was to make it like a webapplication that fits well on a tablet or phone.
-Made a design in Figma that I had as a guide. Didn't create a colorpalette as I use to because I didn't find any good pages for GOT to use.
-The fonts I used is Cizel and Noto san
-[Link](https://www.figma.com/file/XMtIIiXkwNF217cPtdVgyX/GOT-Houses?node-id=0%3A1)
+Made a design in Figma that I had as a baseguide. Didn't create any colorpalette as I use to because I didn't find any good pages for GOT to use.
+The fonts I used is Cizel and Noto san.
+
+[Figma-link](https://www.figma.com/file/XMtIIiXkwNF217cPtdVgyX/GOT-Houses?node-id=0%3A1)
 
 ## Getting it running
 
