@@ -9,3 +9,8 @@
     flex-direction: row;
     justify-content: space-between;
 }
+
+.itemButton {
+    display: flex;
+    align-items: center;
+}

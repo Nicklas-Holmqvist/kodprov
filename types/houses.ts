@@ -1,9 +1,9 @@
-import { IPagination } from './pagination';
+import { Pagination } from '../components/pagination/Pagination';
 
 export interface Houses {
   houses: House[];
   status: boolean;
-  links: IPagination;
+  links: Pagination;
 }
 
 export interface House {
